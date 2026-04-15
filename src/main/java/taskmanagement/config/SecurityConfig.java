@@ -62,7 +62,7 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/accounts").permitAll()
-                        .requestMatchers("/api/tasks").authenticated()
+                        .requestMatchers("/api/tasks/**").authenticated()
                         .requestMatchers("/error", "/actuator/shutdown", "/h2-console/**").permitAll()
                         .anyRequest().denyAll()
                 )
