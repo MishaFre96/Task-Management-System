@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * @author MishaFre96
@@ -24,12 +25,15 @@ public class SecurityConfig {
      * Servicio que se usa para cargar usuarios desde la base de datos.
      */
     private final UserDetailsService userDetailsService;
+    private final BearerTokenAuthenticationFilter bearerTokenAuthenticationFilter;
 
     /**
      * Constructor.
      */
-    public SecurityConfig(UserDetailsService userDetailsService) {
+    public SecurityConfig(UserDetailsService userDetailsService,
+                          BearerTokenAuthenticationFilter bearerTokenAuthenticationFilter) {
         this.userDetailsService = userDetailsService;
+        this.bearerTokenAuthenticationFilter = bearerTokenAuthenticationFilter;
     }
 
     /**
@@ -62,10 +66,13 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/accounts").permitAll()
+                        .requestMatchers("/api/auth/token").authenticated()
                         .requestMatchers("/api/tasks/**").authenticated()
                         .requestMatchers("/error", "/actuator/shutdown", "/h2-console/**").permitAll()
                         .anyRequest().denyAll()
                 )
+                .addFilterBefore(bearerTokenAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class)
                 .userDetailsService(userDetailsService)
                 .build();
     }

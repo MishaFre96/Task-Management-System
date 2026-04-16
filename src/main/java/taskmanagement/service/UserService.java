@@ -58,4 +58,11 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+    /**
+     * Busca un usuario por su email
+     */
+    public User findByEmail(String email) {
+        return userRepository.findByEmailIgnoreCase(email).orElse(null);
+    }
 }
