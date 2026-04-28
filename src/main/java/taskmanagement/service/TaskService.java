@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import taskmanagement.dto.TaskRequest;
 import taskmanagement.model.Task;
+import taskmanagement.repository.CommentRepository;
 import taskmanagement.repository.TaskRepository;
 import taskmanagement.repository.UserRepository;
 
@@ -28,13 +29,15 @@ public class TaskService {
      */
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
     /**
      * Constructor del servicio.
      */
-    public TaskService(TaskRepository taskRepository, UserRepository userRepository) {
+    public TaskService(TaskRepository taskRepository, UserRepository userRepository, CommentRepository commentRepository) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
 
     /**
@@ -222,5 +225,14 @@ public class TaskService {
             }
         }
         return result;
+    }
+
+    /**
+     * Devuelve el número de comentarios de una tarea.
+     * @param task la tarea
+     * @return cantidad de comentarios
+     */
+    public int getCommentCount(Task task) {
+        return (int) commentRepository.countByTask(task);
     }
 }

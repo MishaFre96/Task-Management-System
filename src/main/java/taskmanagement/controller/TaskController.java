@@ -60,7 +60,7 @@ public class TaskController {
      * Devuelve todas las tareas o filtra por autor si se indica.
      */
     @GetMapping
-    public ResponseEntity<List<Map<String, String>>> getTasks(
+    public ResponseEntity<List<Map<String, Object>>> getTask(
             @RequestParam(required = false) String author,
             @RequestParam(required = false) String assignee) {
 
@@ -76,15 +76,16 @@ public class TaskController {
             tasks = taskService.getAllTasks();
         }
 
-        List<Map<String, String>> response = new ArrayList<>();
+        List<Map<String, Object>> response = new ArrayList<>();
         for (Task task : tasks) {
-            Map<String, String> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("id", String.valueOf(task.getId()));
             map.put("title", task.getTitle());
             map.put("description", task.getDescription());
             map.put("status", task.getStatus().name());
             map.put("author", task.getAuthor());
             map.put("assignee", task.getAssignee());
+            map.put("total_comments", taskService.getCommentCount(task));   
             response.add(map);
         }
         return ResponseEntity.ok(response);
