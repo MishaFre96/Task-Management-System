@@ -1,4 +1,4 @@
-# ProgramaTaskManagementSystem
+# Programa TaskManagement System
 
 API REST para un sistema de gestión de tareas desarrollada con Spring Boot, Spring Security y JPA. Incluye funcionalidades de registro de usuarios, autenticación con tokens, gestión de tareas, asignación de tareas, cambio de estado, comentarios y filtros. Proyecto enfocado en el aprendizaje de desarrollo backend con Java y buenas prácticas básicas.
 
