@@ -1,4 +1,8 @@
-/build/
-/.gradle/
-/out/
-*.log
+build/
+.gradle/
+*.db
+*.mv.db
+*.trace.db
+.idea/
+*.iml
+out/
