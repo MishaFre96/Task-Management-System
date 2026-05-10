@@ -1,7 +1,6 @@
 package taskmanagement.dto;
 
 /**
- *
  * @author MishaFre96
  *
  * DTO que recibe los datos para crear una tarea.

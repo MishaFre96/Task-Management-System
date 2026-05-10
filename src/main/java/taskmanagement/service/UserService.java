@@ -8,7 +8,6 @@ import taskmanagement.model.User;
 import taskmanagement.repository.UserRepository;
 
 /**
- *
  * @author MishaFre96
  *
  * Servicio que gestiona el registro de usuarios.
@@ -33,9 +32,11 @@ public class UserService {
      * - password mínimo 6 caracteres
      * - email con formato válido simple
      * - email no repetido
+     * 
+     * @param email email del nuevo usuario
+     * @param password contraseña del nuevo usuario
      */
     public void registerUser(String email, String password) {
-
         if (email == null || email.isBlank() || password == null || password.isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
@@ -61,6 +62,9 @@ public class UserService {
 
     /**
      * Busca un usuario por su email
+     * 
+     * @param email email del usuario a buscar.
+     * @return el usuario encontrado, o null si no existe.
      */
     public User findByEmail(String email) {
         return userRepository.findByEmailIgnoreCase(email).orElse(null);

@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
  * @author MishaFre96
  *
  * Controlador de autenticación de tokens.
@@ -26,19 +25,15 @@ public class AuthController {
 
     private final TokenService tokenService;
 
-    /**
-     * Constructor
-     *
-     * @param tokenService
-     */
     public AuthController(TokenService tokenService) {
         this.tokenService = tokenService;
     }
 
     /**
      * POST /api/auth/token
-     *
-     * @return map JSON
+     * Genera un token Bearer para el usuario autenticado mediante Basic Auth.
+     * 
+     * @return JSON con el token generado.
      */
     @PostMapping("/token")
     public ResponseEntity<Map<String, String>> getToken() {
@@ -60,7 +55,5 @@ public class AuthController {
         Map<String, String> response = new HashMap<>();
         response.put("token", tokenValue);
         return ResponseEntity.ok(response);
-
     }
-
 }

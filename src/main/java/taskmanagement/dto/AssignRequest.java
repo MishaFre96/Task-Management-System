@@ -1,7 +1,6 @@
 package taskmanagement.dto;
 
 /**
- *
  * @author MishaFre96
  *
  * DTO para recibir la solicitud de asignar/desasignar una tarea.
@@ -19,5 +18,4 @@ public class AssignRequest {
     public void setAssignee (String assignee) {
         this.assignee = assignee;
     }
-
 }

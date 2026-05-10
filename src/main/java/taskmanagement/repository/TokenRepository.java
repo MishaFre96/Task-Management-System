@@ -11,21 +11,28 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
- *
  * @author MishaFre96
  *
  * Repositorio con los métodos para manejar un token.
  */
 public interface TokenRepository extends JpaRepository<Token, Long> {
 
-    // Buscar un token por su tokenValue
+    /**
+     * Busca un token por su valor.
+     *
+     * @param tokenValue el string del token.
+     * @return Optional con el token si existe, vacío si no.
+     */
     Optional<Token> findByTokenValue(String tokenValue);
 
-    /* Borrar token caducados con fecha de validez anterior a la acutal
-       No es requisito de la fase 3 del proyecto, pero me pareció bien incluirlo.
+    /**
+     * Elimina los tokens que han expirado (su fecha de expiración es anterior a la indicada).
+     * No es requisito del proyecto, pero así mantenemos la tabla limpia.
+     *
+     * @param now fecha límite: se borran tokens con expiración anterior a este instante.
      */
     @Modifying
     @Transactional
     @Query("DELETE FROM Token t WHERE t.expiresAt < :now")
-    void deleteExpiredTokens(@Param("now")LocalDateTime now);
+    void deleteExpiredTokens(@Param("now") LocalDateTime now);
 }

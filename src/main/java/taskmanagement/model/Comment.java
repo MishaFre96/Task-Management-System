@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 /**
- *
  * @author MishaFre96
  *
  * Entidad que representa un comentario asociado a una tarea.
@@ -56,7 +55,7 @@ public class Comment {
     }
 
     public void setAuthor (String author) {
-        this.author  = author;
+        this.author = author;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -74,5 +73,4 @@ public class Comment {
     public void setTask (Task task) {
         this.task = task;
     }
-
 }

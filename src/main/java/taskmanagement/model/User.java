@@ -3,7 +3,6 @@ package taskmanagement.model;
 import jakarta.persistence.*;
 
 /**
- *
  * @author MishaFre96
  *
  * Entidad User.

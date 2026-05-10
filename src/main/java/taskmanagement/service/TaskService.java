@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author MishaFre96
  *
  * Servicio que contiene la lógica de negocio de las tareas.
@@ -24,16 +23,10 @@ import java.util.List;
 @Service
 public class TaskService {
 
-    /**
-     * Repositorio que permite guardar y consultar tareas en la base de datos.
-     */
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
 
-    /**
-     * Constructor del servicio.
-     */
     public TaskService(TaskRepository taskRepository, UserRepository userRepository, CommentRepository commentRepository) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
@@ -114,7 +107,7 @@ public class TaskService {
      * el asignador no es autor (403) o el asignado no es válido (400).
      */
     @Transactional
-    public Task assignTask (Long taskId, String assigneeEmail, String currentUserEmail) {
+    public Task assignTask(Long taskId, String assigneeEmail, String currentUserEmail) {
 
         // Buscar la tarea
         Task task = taskRepository.findById(taskId)
@@ -130,7 +123,6 @@ public class TaskService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         if("none".equalsIgnoreCase(assigneeEmail)){
-            // desasiganamos si el objetivo es "none"
             task.setAssignee("none");
         } else {
             // verificamos que el assignee es un email con formato válido
@@ -163,12 +155,11 @@ public class TaskService {
     @Transactional
     public Task updateStatus(Long taskId, String newStatus, String currentUserEmail) {
 
-
         // Buscamos la tarea
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        // Verificamos que el usuario actual no es autor o el asignado
+        // Verificamos que el usuario actual es autor o el asignado
         boolean isAuthor = task.getAuthor().equalsIgnoreCase(currentUserEmail);
         boolean isAssignee = task.getAssignee() != null && !"none".equalsIgnoreCase(task.getAssignee())
                 && task.getAssignee().equalsIgnoreCase(currentUserEmail);

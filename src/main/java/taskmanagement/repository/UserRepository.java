@@ -6,7 +6,6 @@ import taskmanagement.model.User;
 import java.util.Optional;
 
 /**
- *
  * @author MishaFre96
  *
  * Repositorio de usuarios.

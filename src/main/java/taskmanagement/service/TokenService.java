@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
- *
  * @author MishaFre96
  *
  * Servicio que gestiona tokens.
@@ -35,6 +34,7 @@ public class TokenService {
 
     /**
      * Genera un nuevo token para eel usuario y lo guarda en la BBDD.
+     * 
      * @param email usuario autenticado
      * @return el token generado (UUID)
      */
@@ -57,6 +57,9 @@ public class TokenService {
 
     /**
      * Valida un token y devuelve el usuario asociado si es válido
+     * 
+     * @param tokenValue el token a comprobar.
+     * @return el usuario si el token es válido, null en caso contrario.
      */
     public User validateToken(String tokenValue) {
         Token token = tokenRepository.findByTokenValue(tokenValue).orElse(null);

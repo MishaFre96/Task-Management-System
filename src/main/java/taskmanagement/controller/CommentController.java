@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author MishaFre96
  *
  * Controlador para la gestión de comentarios.
@@ -20,7 +19,6 @@ import java.util.Map;
  *  POST /api/tasks/{taskId}/comments para agregar comentarios.
  *  GET /api/tasks/{taskId}/comments para obtener los comentarios de una tarea.
  */
-
 @RestController
 @RequestMapping("/api/tasks")
 public class CommentController {
@@ -39,10 +37,10 @@ public class CommentController {
      * @return 200 OK si se guarda correctamente
      */
     @PostMapping("/{taskId}/comments")
-    public ResponseEntity <Map<String, String>> addComment(@PathVariable Long taskId,
+    public ResponseEntity<?> addComment(@PathVariable Long taskId,
                                                            @RequestBody Map<String, String> body) {
 
-        // Obtenermos el email del usuario autenticado
+        // Obtenemos el email del usuario autenticado
         String authorEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         String text = body.get("text");
 

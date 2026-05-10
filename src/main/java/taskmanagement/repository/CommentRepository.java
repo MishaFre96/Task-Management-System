@@ -7,7 +7,6 @@ import taskmanagement.model.Task;
 import java.util.List;
 
 /**
- *
  * @author MishaFre96
  *
  * Repositorio de la entidad Comment.

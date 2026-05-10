@@ -1,7 +1,6 @@
 package taskmanagement.dto;
 
 /**
- *
  * @author MishaFre96
  *
  * DTO para recibir la solicitud de cambio de estado de una tarea.
@@ -19,5 +18,4 @@ public class StatusRequest {
     public void setStatus(String status) {
         this.status = status;
     }
-    
 }

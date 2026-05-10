@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author MishaFre96
  *
  * Controlador de tareas.
@@ -57,10 +56,10 @@ public class TaskController {
 
     /**
      * GET /api/tasks
-     * Devuelve todas las tareas o filtra por autor si se indica.
+     * Devuelve todas las tareas o filtra por autor y/o asignado si se indica.
      */
     @GetMapping
-    public ResponseEntity<List<Map<String, Object>>> getTask(
+    public ResponseEntity<List<Map<String, String>>> getTask(
             @RequestParam(required = false) String author,
             @RequestParam(required = false) String assignee) {
 
@@ -76,16 +75,16 @@ public class TaskController {
             tasks = taskService.getAllTasks();
         }
 
-        List<Map<String, Object>> response = new ArrayList<>();
+        List<Map<String, String>> response = new ArrayList<>();
         for (Task task : tasks) {
-            Map<String, Object> map = new HashMap<>();
+            Map<String, String> map = new HashMap<>();
             map.put("id", String.valueOf(task.getId()));
             map.put("title", task.getTitle());
             map.put("description", task.getDescription());
             map.put("status", task.getStatus().name());
             map.put("author", task.getAuthor());
             map.put("assignee", task.getAssignee());
-            map.put("total_comments", taskService.getCommentCount(task));   
+            map.put("total_comments", String.valueOf(taskService.getCommentCount(task)));
             response.add(map);
         }
         return ResponseEntity.ok(response);

@@ -6,7 +6,6 @@ import taskmanagement.repository.UserRepository;
 import taskmanagement.model.User;
 
 /**
- *
  * @author MishaFre96
  *
  * Servicio usado por Spring Security para autenticar usuarios.
@@ -24,7 +23,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     /**
      * Busca un usuario por email y lo adapta al formato de Spring Security.
      *
-     * @throws UsernameNotFoundException si el usuario no existe
+     * @param email email del usuario que intenta autenticarse.
+     * @return UserDetails con los datos del usuario.
+     * @throws UsernameNotFoundException si el usuario no existe.
      */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

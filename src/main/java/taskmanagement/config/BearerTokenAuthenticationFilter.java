@@ -17,7 +17,6 @@ import taskmanagement.service.TokenService;
 import java.io.IOException;
 
 /**
- *
  * @author MishaFre96
  *
  * Filtro que intercepta peticiones para validar el token Bearer.
@@ -90,5 +89,4 @@ public class BearerTokenAuthenticationFilter  extends OncePerRequestFilter {
         // Continuar la petición (tanto si se autenticó como si no)
         filterChain.doFilter(request, response);
     }
-
 }

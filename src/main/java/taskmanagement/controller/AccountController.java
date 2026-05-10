@@ -7,7 +7,6 @@ import taskmanagement.service.UserService;
 import java.util.Map;
 
 /**
- *
  * @author MishaFre96
  *
  * Controlador para la gestión de usuarios.
@@ -17,14 +16,8 @@ import java.util.Map;
 @RequestMapping("/api/accounts")
 public class AccountController {
 
-    /**
-     * Servicio con la lógica de usuarios (registro).
-     */
     private final UserService userService;
 
-    /**
-     * Constructor.
-     */
     public AccountController(UserService userService) {
         this.userService = userService;
     }

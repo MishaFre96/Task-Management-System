@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 /**
- *
  * @author MishaFre96
  *
  * Entidad que representa una tarea del sistema.
